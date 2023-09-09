@@ -9,16 +9,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class AccountRepositoryTest {
+class AccountRepositoryTest {
 
     @Autowired
     private AccountRepository accountRepository;
 
     @Test
-    public void testSaveAndFindById() {
+    void testSaveAndFindById() {
 
         Account account = new Account();
-        account.setDocumentNumber(12345L);
+        account.setDocumentNumber("12345");
 
 
         Account savedAccount = accountRepository.save(account);
@@ -28,7 +28,7 @@ public class AccountRepositoryTest {
 
 
         assertNotNull(retrievedAccount);
-        assertEquals(12345L, retrievedAccount.getDocumentNumber());
+        assertEquals("12345", retrievedAccount.getDocumentNumber());
     }
 
 }

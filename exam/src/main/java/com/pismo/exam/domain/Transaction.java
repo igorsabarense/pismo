@@ -15,17 +15,17 @@ public class Transaction {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "accountId")
+    @JoinColumn(name = "account_id")
     private Account account;
 
-    @JoinColumn(name = "operationTypeId")
+    @JoinColumn(name = "operation_type_id")
     @OneToOne
     private OperationType operationType;
 
     @Column
     private BigDecimal amount;
 
-    @Column
+    @Column(name = "event_date")
     private LocalDateTime eventDate;
 
     @PrePersist

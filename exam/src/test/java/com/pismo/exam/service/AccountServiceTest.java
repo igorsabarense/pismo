@@ -31,7 +31,7 @@ class AccountServiceTest {
 
     @BeforeEach
     void setUp(){
-        accountDTO = new AccountDTO(null, 12345678910L);
+        accountDTO = new AccountDTO(null, "123456789");
     }
 
     @Test
@@ -47,7 +47,7 @@ class AccountServiceTest {
     void shouldFindAccountById() {
         Account sampleAccount = new Account();
         sampleAccount.setId(1L);
-        sampleAccount.setDocumentNumber(123456789L);
+        sampleAccount.setDocumentNumber("123456789");
 
         when(accountRepository.findById(1L)).thenReturn(Optional.of(sampleAccount));
 
@@ -56,7 +56,7 @@ class AccountServiceTest {
         verify(accountRepository).findById(1L);
 
         assertTrue(result.isPresent());
-        assertEquals(123456789L, result.get().getDocumentNumber());
+        assertEquals("123456789", result.get().getDocumentNumber());
     }
 
     @Test

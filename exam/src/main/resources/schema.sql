@@ -1,6 +1,6 @@
  CREATE TABLE IF NOT EXISTS Accounts (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    documentNumber BIGINT
+    document_number VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS Operation_Types (
@@ -10,10 +10,10 @@ CREATE TABLE IF NOT EXISTS Operation_Types (
 
 CREATE TABLE IF NOT EXISTS Transactions (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    accountId BIGINT,
-    operationTypeId BIGINT,
+    account_id BIGINT,
+    operation_type_id BIGINT,
     amount DECIMAL(10, 2),
-    eventDate TIMESTAMP,
-    FOREIGN KEY (accountId) REFERENCES Accounts(id),
-    FOREIGN KEY (operationTypeId) REFERENCES Operation_Types(id)
+    event_date TIMESTAMP,
+    FOREIGN KEY (account_id) REFERENCES Accounts(id),
+    FOREIGN KEY (operation_type_id) REFERENCES Operation_Types(id)
 );

@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class TransactionServiceTest {
+class TransactionServiceTest {
 
     @InjectMocks
     private TransactionService transactionService;
@@ -43,7 +43,7 @@ public class TransactionServiceTest {
 
         TransactionDTO transactionDTO = new TransactionDTO(1L, 2L, (BigDecimal.valueOf(-100.0)));
 
-        when(accountService.findAccountById(1L)).thenReturn(Optional.of(new Account(1L, 123456789L)));
+        when(accountService.findAccountById(1L)).thenReturn(Optional.of(new Account(1L, "123456789")));
         when(operationTypeService.findOperationTypeById(2L)).thenReturn(Optional.of(new OperationType(2L, COMPRA_A_VISTA)));
 
         transactionService.createTransaction(transactionDTO);
@@ -58,7 +58,7 @@ public class TransactionServiceTest {
 
         TransactionDTO transactionDTO = new TransactionDTO(1L, 2L, (BigDecimal.valueOf(100.0)));
 
-        when(accountService.findAccountById(1L)).thenReturn(Optional.of(new Account(1L, 123456789L)));
+        when(accountService.findAccountById(1L)).thenReturn(Optional.of(new Account(1L, "123456789")));
         when(operationTypeService.findOperationTypeById(2L)).thenReturn(Optional.of(new OperationType(2L, PAGAMENTO)));
 
         transactionService.createTransaction(transactionDTO);
@@ -74,17 +74,17 @@ public class TransactionServiceTest {
 
         TransactionDTO transactionDTO = new TransactionDTO(1L, 2L, BigDecimal.valueOf(-100.0));
 
-        when(accountService.findAccountById(1L)).thenReturn(Optional.of(new Account(1L, 123456789L)));
+        when(accountService.findAccountById(1L)).thenReturn(Optional.of(new Account(1L, "123456789")));
         when(operationTypeService.findOperationTypeById(2L)).thenReturn(Optional.of(new OperationType(2L, PAGAMENTO)));
 
         assertThrows(BusinessException.class, () -> transactionService.createTransaction(transactionDTO));
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"COMPRA_A_VISTA", "COMPRA_PARCELADA", "SAQUE"})
+    @ValueSource(strings = {"COMPRA A VISTA", "COMPRA PARCELADA", "SAQUE"})
     void shouldThrowExceptionWhenPositiveAmountForOperationTypeCompraOrSaque(java.lang.String operationType) {
         TransactionDTO transactionDTO = new TransactionDTO(1L, 2L, BigDecimal.valueOf(100.0));
-        when(accountService.findAccountById(1L)).thenReturn(Optional.of(new Account(1L, 123456789L)));
+        when(accountService.findAccountById(1L)).thenReturn(Optional.of(new Account(1L, "123456789")));
         when(operationTypeService.findOperationTypeById(2L)).thenReturn(Optional.of(new OperationType(2L, operationType)));
         assertThrows(BusinessException.class, () -> transactionService.createTransaction(transactionDTO));
     }
@@ -99,7 +99,7 @@ public class TransactionServiceTest {
     @Test
     void shouldThrowExceptionWhenOperationTypeIsNotFound() {
         TransactionDTO transactionDTO = new TransactionDTO(1L, 2L, BigDecimal.valueOf(100.0));
-        when(accountService.findAccountById(1L)).thenReturn(Optional.of(new Account(1L, 123456789L)));
+        when(accountService.findAccountById(1L)).thenReturn(Optional.of(new Account(1L, "123456789")));
         when(operationTypeService.findOperationTypeById(2L)).thenReturn(Optional.empty());
         assertThrows(EntityNotFoundException.class, () -> transactionService.createTransaction(transactionDTO));
     }

@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class TransactionRepositoryTest {
+class TransactionRepositoryTest {
 
     @Autowired
     private TransactionRepository transactionRepository;
@@ -34,7 +34,7 @@ public class TransactionRepositoryTest {
     @BeforeEach
     public void setup() {
         testAccount = new Account();
-        testAccount.setDocumentNumber(12345L);
+        testAccount.setDocumentNumber("12345");
 
         testOperationType = new OperationType();
         testOperationType.setDescription(PAGAMENTO);
@@ -44,7 +44,7 @@ public class TransactionRepositoryTest {
     }
 
     @Test
-    public void testSaveAndFindById() {
+    void testSaveAndFindById() {
         Transaction transaction = new Transaction();
         transaction.setAccount(testAccount);
         transaction.setOperationType(testOperationType);

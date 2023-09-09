@@ -12,9 +12,9 @@ public class Account {
     private Long id;
 
     @Column
-    private Long documentNumber;
+    private String documentNumber;
 
-    public Account(Long id, Long documentNumber){
+    public Account(Long id, String documentNumber){
         this.id = id;
         this.documentNumber = documentNumber;
     }
@@ -31,11 +31,11 @@ public class Account {
         this.id = id;
     }
 
-    public Long getDocumentNumber() {
+    public String getDocumentNumber() {
         return documentNumber;
     }
 
-    public void setDocumentNumber(Long documentNumber) {
+    public void setDocumentNumber(String documentNumber) {
         this.documentNumber = documentNumber;
     }
 }
