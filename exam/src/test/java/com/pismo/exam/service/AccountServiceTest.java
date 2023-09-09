@@ -2,6 +2,7 @@ package com.pismo.exam.service;
 
 import com.pismo.exam.domain.Account;
 import com.pismo.exam.dto.AccountDTO;
+import com.pismo.exam.exception.BusinessException;
 import com.pismo.exam.repository.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -68,5 +69,12 @@ class AccountServiceTest {
         verify(accountRepository).findById(2L);
 
         assertFalse(result.isPresent());
+    }
+
+    @Test
+    void shouldThrowExceptionOnDuplicatedDocNumber() {
+        AccountDTO accDTO = new AccountDTO(null, "123456");
+        when(accountRepository.existsByDocumentNumber("123456")).thenReturn(Boolean.TRUE);
+        assertThrows(BusinessException.class, () -> accountService.createAccount(accDTO));
     }
 }

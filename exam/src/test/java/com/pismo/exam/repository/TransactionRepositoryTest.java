@@ -29,25 +29,20 @@ class TransactionRepositoryTest {
 
     private Account testAccount;
 
-    private OperationType testOperationType;
 
     @BeforeEach
     public void setup() {
         testAccount = new Account();
         testAccount.setDocumentNumber("12345");
 
-        testOperationType = new OperationType();
-        testOperationType.setDescription(PAGAMENTO);
-
         accountRepository.save(testAccount);
-        operationTypeRepository.save(testOperationType);
     }
 
     @Test
     void testSaveAndFindById() {
         Transaction transaction = new Transaction();
         transaction.setAccount(testAccount);
-        transaction.setOperationType(testOperationType);
+        transaction.setOperationType(new OperationType(4L, PAGAMENTO));
         transaction.setAmount(BigDecimal.TEN);
 
 

@@ -19,7 +19,7 @@ public class Transaction {
     private Account account;
 
     @JoinColumn(name = "operation_type_id")
-    @OneToOne
+    @OneToOne(optional = false)
     private OperationType operationType;
 
     @Column

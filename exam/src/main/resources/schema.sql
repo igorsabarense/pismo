@@ -1,11 +1,11 @@
  CREATE TABLE IF NOT EXISTS Accounts (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    document_number VARCHAR(20)
+    document_number VARCHAR(20) UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS Operation_Types (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    description VARCHAR(255)
+    description VARCHAR(255) UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS Transactions (

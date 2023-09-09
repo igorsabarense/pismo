@@ -2,6 +2,7 @@ package com.pismo.exam.service;
 
 import com.pismo.exam.domain.Account;
 import com.pismo.exam.dto.AccountDTO;
+import com.pismo.exam.exception.BusinessException;
 import com.pismo.exam.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,11 @@ public class AccountService {
     }
 
     public void createAccount(AccountDTO accountDTO){
+
+        if(isDuplicatedDocumentNumber(accountDTO)){
+            throw new BusinessException("There is already a resource with this document_number");
+        }
+
         final Account account = new Account();
         account.setDocumentNumber(accountDTO.document_number());
         accountRepository.save(account);
@@ -26,6 +32,11 @@ public class AccountService {
     public Optional<Account> findAccountById(Long id){
         return accountRepository.findById(id);
     }
+
+    private boolean isDuplicatedDocumentNumber(AccountDTO accountDTO) {
+        return Boolean.TRUE.equals(accountRepository.existsByDocumentNumber(accountDTO.document_number()));
+    }
+
 
 
 
