@@ -45,11 +45,11 @@ Once the Docker image is built, you can run a Docker container from it. Use the 
 docker run -p 8080:8080 pismo-backend/1.0
 ```
 
-This command maps port 8080 on your host machine to port 8080 inside the Docker container. Adjust the port mapping as needed based on your application's configuration.
+This command maps port 8080 on your host machine to port 8080 inside the Docker container.
 
 ### 5. Access Your Java Application
 
-Your Docker container is now running your Java application. You can access it in your web browser or through API requests, depending on your application's functionality. Navigate to `http://localhost:8080/swagger-ui/index.html` to access swagger.
+Your Docker container is now running your Java application. You can access it in your web browser or through API requests. Navigate to `http://localhost:8080/swagger-ui/index.html` to access swagger.
 
 ### 6. Cleanup
 
@@ -65,4 +65,29 @@ To remove the Docker image:
 
 ```bash
 docker image rm pismo-backend/1.0
+```
+## Notes
+
+You can access the database and go through it's records by accessing:
+
+```bash
+http://localhost:8080/h2-console
+```
+
+### The H2 database structure:
+
+To access it, you will need the URL:
+
+```bash
+url: jdbc:h2:mem:testdb
+```
+Username:
+
+```bash
+sa
+```
+Password:
+
+```bash
+password
 ```
