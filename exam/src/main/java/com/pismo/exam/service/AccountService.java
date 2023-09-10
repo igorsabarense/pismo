@@ -20,6 +20,9 @@ public class AccountService {
 
     public void createAccount(AccountDTO accountDTO){
 
+        if(accountDTO.document_number().isBlank()){
+            throw new BusinessException("Document_number cannot be blank.");
+        }
         if(isDuplicatedDocumentNumber(accountDTO)){
             throw new BusinessException("There is already a resource with this document_number");
         }
