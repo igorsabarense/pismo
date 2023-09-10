@@ -104,6 +104,14 @@ class TransactionServiceTest {
         assertThrows(EntityNotFoundException.class, () -> transactionService.createTransaction(transactionDTO));
     }
 
+    @Test
+    void shouldThrowExceptionWhenOperationTypeIsNotSupported() {
+        TransactionDTO transactionDTO = new TransactionDTO(1L, 2L, BigDecimal.valueOf(100.0));
+        when(accountService.findAccountById(1L)).thenReturn(Optional.of(new Account(1L, "123456789")));
+        when(operationTypeService.findOperationTypeById(2L)).thenReturn(Optional.of(new OperationType(5L, "UNSUPPORTED_OP")));
+        assertThrows(BusinessException.class, () -> transactionService.createTransaction(transactionDTO));
+    }
+
 
 
 

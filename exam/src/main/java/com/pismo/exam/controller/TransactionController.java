@@ -29,12 +29,8 @@ public class TransactionController {
     @PostMapping
     public ResponseEntity<HttpStatus> createTransaction(@RequestBody TransactionDTO transactionDTO){
         LOGGER.info("Request to create a new transaction {}", transactionDTO);
-        try{
-            transactionService.createTransaction(transactionDTO);
-            LOGGER.info("Resource successfully created");
-        }catch (Exception ex){
-            LOGGER.error("Error creating transaction.");
-        }
+        transactionService.createTransaction(transactionDTO);
+        LOGGER.info("Resource successfully created");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

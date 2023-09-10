@@ -14,7 +14,7 @@ public class AccountService {
     private final AccountRepository accountRepository;
 
     @Autowired
-    public AccountService(final AccountRepository accountRepository) {
+    public AccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 

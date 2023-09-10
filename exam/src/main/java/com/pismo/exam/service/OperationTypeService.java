@@ -14,7 +14,7 @@ public class OperationTypeService {
     private final OperationTypeRepository operationTypeRepository;
 
     @Autowired
-    public OperationTypeService(final OperationTypeRepository operationTypeRepository) {
+    public OperationTypeService(OperationTypeRepository operationTypeRepository) {
         this.operationTypeRepository = operationTypeRepository;
     }
 

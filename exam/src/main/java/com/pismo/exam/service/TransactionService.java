@@ -25,15 +25,15 @@ public class TransactionService {
 
 
     @Autowired
-    public TransactionService(final TransactionRepository transactionRepository,
-                              final AccountService accountService,
-                              final OperationTypeService operationTypeService) {
+    public TransactionService(TransactionRepository transactionRepository,
+                              AccountService accountService,
+                              OperationTypeService operationTypeService) {
         this.transactionRepository = transactionRepository;
         this.accountService = accountService;
         this.operationTypeService = operationTypeService;
     }
 
-    public void createTransaction(final TransactionDTO transactionDTO){
+    public void createTransaction(TransactionDTO transactionDTO){
         Account account = getAccount(transactionDTO);
         OperationType operationType = getOperationType(transactionDTO);
 
@@ -72,6 +72,8 @@ public class TransactionService {
                     throw new BusinessException("Amount must be positive for operation: " + transaction.getOperationType().getDescription());
                 }
             }
+
+            default -> throw new BusinessException("Operation not supported");
         }
     }
 
