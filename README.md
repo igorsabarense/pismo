@@ -32,7 +32,7 @@ Inside the project directory, you should find a `Dockerfile` that contains instr
 To build the Docker image, run the following command:
 
 ```bash
-docker build -t pismo-backend/1.0 .
+sudo docker build -t pismo-backend/1.0 .
 ```
 
 Replace `your-image-name` with a meaningful name for your Docker image.
@@ -42,7 +42,7 @@ Replace `your-image-name` with a meaningful name for your Docker image.
 Once the Docker image is built, you can run a Docker container from it. Use the following command:
 
 ```bash
-docker run -p 8080:8080 pismo-backend/1.0
+sudo docker run -p 8080:8080 pismo-backend/1.0
 ```
 
 This command maps port 8080 on your host machine to port 8080 inside the Docker container.
@@ -56,7 +56,7 @@ Your Docker container is now running your Java application. You can access it in
 To stop and remove the Docker container when you're finished, press `Ctrl+C` in the terminal where the container is running. Then, remove the container with:
 
 ```bash
-docker container rm <container_id>
+sudo docker container rm <container_id>
 ```
 
 Replace `<container_id>` with the actual container ID or use `docker container ls -a` to list all containers and identify the one you want to remove.
@@ -64,7 +64,7 @@ Replace `<container_id>` with the actual container ID or use `docker container l
 To remove the Docker image:
 
 ```bash
-docker image rm pismo-backend/1.0
+sudo docker image rm pismo-backend/1.0
 ```
 ## Notes
 
